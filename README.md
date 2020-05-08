@@ -17,6 +17,8 @@ where f<sub>r</sub> is the restoration, `U` is the upsampling operator/function,
 
 **Input:**
 
+- Settings object: containg all the parameters of the inverse problem, i.e. in SIM, the parameters are wavelength, NA, etc.
+
 - Dimensions `[X, Y, Z]`
 
 - Forward function `H`
