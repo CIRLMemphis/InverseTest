@@ -1,5 +1,19 @@
 % see section [TODO] in the documentation
-function [im, jm, Nm] = PatternTunable3DNSlits(X, Y, Z, omegaXY, omegaZ, dXY, dZ, phiDeg, offsDeg, thetaDeg, phizDeg, Nslits)
+function [im, jm, Nm] = PatternTunable3DNSlits(Settings)
+
+X       = Settings.X;
+Y       = Settings.Y;
+Z       = Settings.Z;
+omegaXY = Settings.um;
+omegaZ  = Settings.wm;
+dXY     = Settings.dXY;
+dZ      = Settings.dZ;
+phiDeg  = Settings.phi;
+offsDeg = Settings.offs;
+thetaDeg= Settings.theta;
+phizDeg = Settings.phizDeg;
+Nslits  = Settings.Nslits;
+
 [yy, xx, zz] = meshgrid(0 : 1 : X-1, 0 : 1 : Y-1, 0 : 1 : Z-1);
 Nm    = 2;            % 3-slit tunable SIM has 2 pattern components
 phi   = pi*phiDeg/180;

@@ -1,4 +1,10 @@
-function h = SphericalShell (X, Y, Z, dXY, Radius, Thickness)
+function h = SphericalShell (Settings, Radius, Thickness)
+
+X       = Settings.X;
+Y       = Settings.Y;
+Z       = Settings.Z;
+dXY     = Settings.dXY;
+
 radius1 = (Radius-Thickness/1.5)./dXY;
 radius2 = (Radius)./dXY;
 center = [1+Y/2 1+X/2 1+Z/2];

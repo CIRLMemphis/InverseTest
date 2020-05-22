@@ -1,7 +1,11 @@
-function h = PSFAgard( XY, Z, dXY, dZ)
+function h = PSFAgard(Settings)
 
 % MATLAB code for Adarg PR implementation
 % Author : Nurmohammed ; Date : 10/24/2013
+XY = Settings.X
+Z = Settings.Z
+dXY = Settings.dXY
+dZ = Settings.dZ
 
 NA       = 1.4;
 lambda   = 0.515;

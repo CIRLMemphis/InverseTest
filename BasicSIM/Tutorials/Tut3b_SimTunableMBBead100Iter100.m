@@ -15,11 +15,16 @@ Z     = 2*Z;
 dXY   = dXY/2;
 dZ    = dZ/2;
 
+Settings.X = X;
+Settings.Y = Y;
+Settings.Z = Z;
+Settings.dXY = dXY;
+Settings.dZ = dZ;
 %% construct the high-resolution point-spread function (PSF)
-h  = PSFAgard(X, Z, dXY, dZ);
+h  = PSFAgard(Settings);
 
 %% load the high-resolution modulating patterns
-[im, jm, ~] = PatternTunable3DNSlits(X, Y, Z, um, wm, dXY, dZ, phi, offs, theta, phizDeg, Nslits);
+[im, jm, ~] = PatternTunable3DNSlits(Settings);
 
 %% run the model-based reconstruction and get the restored image
 numIt    = 10;       % set the number of iterations

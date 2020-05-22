@@ -2,10 +2,10 @@ clear;
 clc;
 
 % folder containing the experimental .mat data
-CIRLDataPath = "C:\Users\cvan\OneDrive - The University of Memphis\CIRLData";
+CIRLDataPath = "C:\Users\battu\Documents\MATLAB\CIRLData";
 
 % folder containing the source code
-CIRLSrcPath  = "C:\Users\cvan\OneDrive - The University of Memphis\BasicSIM";
+CIRLSrcPath  = "C:\Users\battu\Documents\MATLAB\BasicSIM";
 
 % folder containing the generated reports, default to
 % "CIRLSrcPath\GeneratedReport"
