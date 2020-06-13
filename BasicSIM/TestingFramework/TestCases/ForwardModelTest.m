@@ -44,3 +44,6 @@ gConv11 = convn(Object.*jm(:,:,:,1,1,1), h.*im(:,:,:,1,1,1), 'same') +...
           convn(Object.*jm(:,:,:,1,1,2), h.*im(:,:,:,1,1,2), 'same');
 
 %% check that g00 and gConv00 is the same (visually or computationally)
+figure;
+subplot(121); imagesc(g00(:,:,51)); axis square;
+subplot(122); imagesc(gConv00(:,:,51)); axis square;
