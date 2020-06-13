@@ -37,10 +37,10 @@ Object    = SphericalShell(Settings, Radius, Thickness);
 
 %% Using ForwardModel to get the raw data
 g   = ForwardModel(Object, h, im, jm);
-g00 = g(:,:,:,1,1);
+g11 = g(:,:,:,1,1); % example of testing the first phase, first orientation raw data
 
 %% using convolution to test the ForwardModel
-gConv00 = convn(Object.*jm(:,:,:,1,1,1), h.*im(:,:,:,1,1,1), 'same') +...
+gConv11 = convn(Object.*jm(:,:,:,1,1,1), h.*im(:,:,:,1,1,1), 'same') +...
           convn(Object.*jm(:,:,:,1,1,2), h.*im(:,:,:,1,1,2), 'same');
 
 %% check that g00 and gConv00 is the same (visually or computationally)
