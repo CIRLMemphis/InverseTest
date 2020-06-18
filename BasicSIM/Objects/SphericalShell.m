@@ -1,9 +1,11 @@
-function h = SphericalShell (Settings, Radius, Thickness)
+function h = SphericalShell (Settings)
 
 X       = Settings.X;
 Y       = Settings.Y;
 Z       = Settings.Z;
 dXY     = Settings.dXY;
+Radius = Settings.Radius;
+Thickness = Settings.Thickness;
 
 radius1 = (Radius-Thickness/1.5)./dXY;
 radius2 = (Radius)./dXY;

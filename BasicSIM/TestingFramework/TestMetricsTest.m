@@ -1,3 +1,5 @@
+run('CIRLSetup.m')
+
 [ psfpar, psfpari ] = PSFConfigNoAber();
 X     = 200;                        % discrete lateral size in voxels
 Y     = 200;                        % discrete lateral size in voxels
@@ -17,7 +19,24 @@ wm    = ((x0*fL2)/(2*fL1*fMO))*um;  % axial modulating frequency
 phizDeg   = 46.0;                   % axial phase
 Nslits    = 3;
 
-s = struct('X', X, 'Y', Y, 'Z', Z, 'dXY', dXY, 'dZ', dZ,'uc', uc, 'offs', offs, 'phi', phi,'theta', theta,'um', um,'x0',x0, 'fL1', fL1, 'fL2', fL2, 'fMO', fMO, 'wm', wm, 'phizDeg', phizDeg, 'Nslits', Nslits);
+Radius = 2/2;
+Thickness = 1/2;
+s = struct('X', X, 'Y', Y, 'Z', Z, 'dXY', dXY, 'dZ', dZ, 'uc', uc, 'offs', offs,'phi', phi,'theta', theta,'um', um,'x0',x0, 'fL1', fL1, 'fL2', fL2, 'fMO', fMO, 'wm', wm, 'phizDeg', phizDeg, 'Nslits', Nslits);
+
 Settings = DataFrame.fromStruct(s);
-Settings.Radius = 2/2;
-Settings.Thickness = 1/2;
+Settings.PAgard = @PSFAgard;
+Settings.Pattern3D = @PatternTunable3DNSlits;
+Settings.Radius = Radius;
+Settings.Thickness = Thickness;
+
+% Call the MetricsTest
+
+[MSE,SSIM] = MetricsTest(Settings,@SphericalShell);
+disp(MSE)
+disp(SSIM)
+if MSE == 0 && abs(SSIM-1.0000) < 1e-9
+    disp('The objects are same!')
+else
+    disp('The objects are not same!')
+end
+

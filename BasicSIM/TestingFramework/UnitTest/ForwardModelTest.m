@@ -1,4 +1,4 @@
-run('../../CIRLSetup.m')
+run('CIRLSetup.m')
 
 %% Simulated settings
 [ psfpar, psfpari ] = PSFConfigNoAber();
@@ -31,9 +31,9 @@ h  = PSFAgard(Settings);
 [im, jm, ~] = PatternTunable3DNSlits(Settings);
 
 %% obtain the object to test, which is a bead
-Radius    = 2/2;
-Thickness = 1/2;
-Object    = SphericalShell(Settings, Radius, Thickness);
+Settings.Radius    = 2/2;
+Settings.Thickness = 1/2;
+Object    = SphericalShell(Settings);
 
 %% Using ForwardModel to get the raw data
 g   = ForwardModel(Object, h, im, jm);
@@ -45,5 +45,5 @@ gConv11 = convn(Object.*jm(:,:,:,1,1,1), h.*im(:,:,:,1,1,1), 'same') +...
 
 %% check that g00 and gConv00 is the same (visually or computationally)
 figure;
-subplot(121); imagesc(g00(:,:,51)); axis square;
-subplot(122); imagesc(gConv00(:,:,51)); axis square;
+subplot(121); imagesc(g11(:,:,51)); axis square;
+subplot(122); imagesc(gConv11(:,:,51)); axis square;

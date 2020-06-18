@@ -1,5 +1,5 @@
 %% load the CIRL settings
-run("../../CIRLSetup.m")
+run("CIRLSetup.m")
 
 %% load the experiment setup (in this case it is simulated setup)
 run("SimTunableStarLikeSetup.m");

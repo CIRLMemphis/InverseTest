@@ -16,3 +16,8 @@ fMO   = 160/63;
 wm    = ((x0*fL2)/(2*fL1*fMO))*um;  % axial modulating frequency
 phizDeg   = 46.0;                   % axial phase
 Nslits    = 3;
+
+s = struct('X', X, 'Y', Y, 'Z', Z, 'dXY', dXY, 'dZ', dZ,'uc', uc, 'offs', offs, 'phi', phi,'theta', theta,'um', um,'x0',x0, 'fL1', fL1, 'fL2', fL2, 'fMO', fMO, 'wm', wm, 'phizDeg', phizDeg, 'Nslits', Nslits);
+Settings = DataFrame.fromStruct(s);
+Settings.Radius = 2/2;
+Settings.Thickness = 1/2;

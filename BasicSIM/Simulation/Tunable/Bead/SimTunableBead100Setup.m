@@ -1,5 +1,5 @@
 %%
-run("../../../CIRLSetup.m");
+run("CIRLSetup.m");
 
 %% Simulated 3W star corner settings
 [ psfpar, psfpari ] = PSFConfigNoAber();
@@ -21,20 +21,23 @@ w     = ((x0*fL2)/(2*fL1*fMO))*u;
 phizDeg   = 46.0;
 Nslits = 3;
 
+s = struct('X', X, 'Y', Y, 'Z', Z, 'dXY', dXY, 'dZ', dZ,'uc', uc, 'offs', offs, 'phi', phi,'theta', theta,'um', um,'x0',x0, 'fL1', fL1, 'fL2', fL2, 'fMO', fMO, 'wm', wm, 'phizDeg', phizDeg, 'Nslits', Nslits);
+Settings = DataFrame.fromStruct(s);
+
 %% get the pattern and check
 zBF = 1 + Z/2;
 %p  = psfpar.initialize(psfpar, 'Vectorial', 200);
 %h  = PSFLutz(X, Z, dXY, dZ, p);
-h  = PSFAgard( X, Z, dXY, dZ);
-[im, jm, Nn] = PatternTunable3DNSlits(X, Y, Z, u, w, dXY, dZ, phi, offs, theta, phizDeg, Nslits);
+h  = PSFAgard(Settings);
+[im, jm, Nn] = PatternTunable3DNSlits(Settings);
 vz = squeeze(im(1+Y/2,1+X/2,:,1,1,2));
 vz = vz./max(vz(:));
 hz = squeeze(h (1+Y/2,1+X/2,:));
 hz = hz./max(hz(:));
 figure;  plot(vz, 'DisplayName', 'v(z)'); 
 hold on; plot(hz, 'DisplayName', 'h(z)'); 
-xlabel('z'); ylabel('value'); suptitle("Visibility and PSF at zBF = " + num2str(zBF)); legend;
+xlabel('z'); ylabel('value');
 
 jm2 = squeeze(jm(1+Y/2,:,zBF,1,1,2));
 figure;  plot(jm2, 'DisplayName', 'jm(2)'); 
-xlabel('x'); ylabel('value'); suptitle("jm at zBF = " + num2str(zBF)); legend;
+xlabel('x'); ylabel('value');

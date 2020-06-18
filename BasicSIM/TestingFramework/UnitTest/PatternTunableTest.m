@@ -1,4 +1,4 @@
-run('../../CIRLSetup.m')
+run('CIRLSetup.m')
 
 %%
 X     = 2;       % discrete lateral size in voxels
@@ -25,5 +25,5 @@ Settings = DataFrame.fromStruct(s);
 if jm(1,2,1,1,1,2) == cos(pi)
     disp("pass unit test for lateral Tunable pattern!");
 else
-    disp("pass unit test for lateral Tunable pattern!");
+    disp("fail unit test for lateral Tunable pattern!");
 end

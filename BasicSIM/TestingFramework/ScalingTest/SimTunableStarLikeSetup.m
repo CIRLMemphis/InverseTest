@@ -34,8 +34,8 @@ hz = squeeze(h (1+Y/2,1+X/2,:));
 hz = hz./max(hz(:));
 figure;  plot(vz, 'DisplayName', 'v(z)'); 
 hold on; plot(hz, 'DisplayName', 'h(z)'); 
-xlabel('z'); ylabel('value'); suptitle("Visibility and PSF at zBF = " + num2str(zBF)); legend;
+xlabel('z'); ylabel('value');
 
 jm2 = squeeze(jm(1+Y/2,:,zBF,1,1,2));
 figure;  plot(jm2, 'DisplayName', 'jm(2)'); 
-xlabel('x'); ylabel('value'); suptitle("jm at zBF = " + num2str(zBF)); legend;
+xlabel('x'); ylabel('value');
