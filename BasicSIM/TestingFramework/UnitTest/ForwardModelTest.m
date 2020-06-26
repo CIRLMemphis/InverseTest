@@ -43,7 +43,15 @@ g11 = g(:,:,:,1,1); % example of testing the first phase, first orientation raw 
 gConv11 = convn(Object.*jm(:,:,:,1,1,1), h.*im(:,:,:,1,1,1), 'same') +...
           convn(Object.*jm(:,:,:,1,1,2), h.*im(:,:,:,1,1,2), 'same');
 
-%% check that g00 and gConv00 is the same (visually or computationally)
+%% check that g11 and gConv11 is the same (visually or computationally)
 figure;
 subplot(121); imagesc(g11(:,:,51)); axis square;
 subplot(122); imagesc(gConv11(:,:,51)); axis square;
+%% Display the difference image
+K = imabsdiff(g11,gConv11);
+figure
+subplot(121); imagesc(K(:,:,51)); axis square;
+%% Compare the similarity of the objects
+[MSE, SSIM] = MSESSIM(g11, gConv11);
+disp(MSE)
+disp(SSIM)
