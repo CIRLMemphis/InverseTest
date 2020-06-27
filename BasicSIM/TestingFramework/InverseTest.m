@@ -19,7 +19,10 @@ disp(size(rawData));
 
 estimatedOb = Backward(Forward,Settings.CostFunction,Settings.Gradient,Settings.StepSize,rawData, h, im, jm, numIt ,5e-20 ,-1, -1, picIn); 
 
-[MSE, SSIM] = MSESSIM(Object, estimatedOb);
+% normalize the restoration
+norOb       = estimatedOb/sum(estimatedOb(:))*sum(Object(:));
+
+[MSE, SSIM] = MSESSIM(Object, norOb);
 Metrics.MSE = MSE;
 Metrics.SSIM = SSIM;
 %% compare Object vs estimatedOb by plotting using imagesc
