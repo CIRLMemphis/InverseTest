@@ -23,11 +23,14 @@ Radius = 2/2;
 Thickness = 1/2;
 s = struct('X', X, 'Y', Y, 'Z', Z, 'dXY', dXY, 'dZ', dZ, 'uc', uc, 'offs', offs,'phi', phi,'theta', theta,'um', um,'x0',x0, 'fL1', fL1, 'fL2', fL2, 'fMO', fMO, 'wm', wm, 'phizDeg', phizDeg, 'Nslits', Nslits);
 
-Settings = DataFrame.fromStruct(s);
-Settings.PAgard = @PSFAgard;
-Settings.Pattern3D = @PatternTunable3DNSlits;
-Settings.Radius = Radius;
-Settings.Thickness = Thickness;
+Settings              = DataFrame.fromStruct(s);
+Settings.PAgard       = @PSFAgard;
+Settings.Pattern3D    = @PatternTunable3DNSlits;
+Settings.Radius       = Radius;
+Settings.Thickness    = Thickness;
+Settings.CostFunction = @CostFunction;
+Settings.Gradient     = @Gradient;
+Settings.StepSize     = @StepSize;
 
 % Call the InverseTest
 

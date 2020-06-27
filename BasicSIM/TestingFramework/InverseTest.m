@@ -4,7 +4,7 @@ Object = SimulationFct(Settings);
 
 figure; imagesc(Object(:,:,1+(Settings.Z)/2)); axis square;
 
-%% call “PSFAgard” and “PatternTunable3DNSlits”
+%% call “PSFAgard�? and “PatternTunable3DNSlits�?
 func1 = Settings.PAgard;
 h  = func1(Settings);
 
@@ -13,11 +13,11 @@ func2 = Settings.Pattern3D;
 
 rawData = Forward(Object, h, im, jm);
 rawData = rawData(1:2:end, 1:2:end, 1:2:end, :, :);
-numIt = 10;
-picIn = numIt;
+numIt   = Settings.numIt;
+picIn   = numIt;
 disp(size(rawData));
 
-estimatedOb = Backward(@ForwardModel,@CostFunction,@Gradient,@StepSize,rawData, h, im, jm, numIt ,5e-20 ,-1, -1, picIn); 
+estimatedOb = Backward(Forward,Settings.CostFunction,Settings.Gradient,Settings.StepSize,rawData, h, im, jm, numIt ,5e-20 ,-1, -1, picIn); 
 
 [MSE, SSIM] = MSESSIM(Object, estimatedOb);
 Metrics.MSE = MSE;
