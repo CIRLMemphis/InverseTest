@@ -39,12 +39,15 @@ reconImg = GradientDescent(@ForwardModel, ...
                            5e-20 ,-1, -1, picIn);
                        
 save('TutSimTunableStarLikeMB.mat', '-v7.3', 'g', 'reconImg');
+%% normalize the restoration
+norOb       = reconImg/sum(reconImg(:))*sum(ob(:));
+
 %% Compare the similarity of the simulated object with restoration object
-[MSE, SSIM] = MSESSIM(ob, reconImg);
+[MSE, SSIM] = MSESSIM(ob, norOb);
 disp(MSE)
 disp(SSIM)
 %% load the collected data (in this case reconstructed data)
-gIn1 = ForwardModel(reconImg, h, im, jm);
+gIn1 = ForwardModel(norOb, h, im, jm);
 gIn1 = gIn1(1:2:end, 1:2:end, 1:2:end, :,:);
 g1   = gIn1;
 %% Compare the similarity of the simulation data with restoration simulation data
